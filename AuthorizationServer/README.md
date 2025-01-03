@@ -41,7 +41,7 @@ curl --location 'localhost:9000/oauth2/token' \
 - H2 Database (for development)
 
 ## Configuration
-The application runs on port 9000 by default. You can modify this in `application.properties`.
+The application runs on port 9000 by default. You can modify this in `application.yml`.
 
 ## Security
 - Uses Basic Authentication for client credentials
