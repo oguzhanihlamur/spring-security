@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'dev.antozy'
-version = 'V25.01.000'
+version = 'V25.01.001'
 
 java {
     toolchain {
