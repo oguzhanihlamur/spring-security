@@ -4,6 +4,7 @@ import dev.antozy.entities.BaseEntity;
 import dev.antozy.entities.Role;
 
 import java.util.Optional;
+import java.util.Set;
 
 public interface RoleRepository extends BaseRepository<Role, Long> {
 
@@ -12,4 +13,6 @@ public interface RoleRepository extends BaseRepository<Role, Long> {
     }
 
     Optional<Role> findByName(String name);
+
+    Set<Role> findByIdIn(Set<Long> roleIds);
 }

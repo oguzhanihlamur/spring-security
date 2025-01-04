@@ -1,4 +1,4 @@
-package dev.antozy.config;
+package dev.antozy.services;
 
 import dev.antozy.conventers.AuthenticationMethodConverter;
 import dev.antozy.conventers.GrantTypeConverter;
