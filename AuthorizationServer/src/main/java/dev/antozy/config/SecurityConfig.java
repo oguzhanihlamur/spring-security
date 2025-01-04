@@ -49,7 +49,7 @@ public class SecurityConfig {
                 .with(authorizationServerConfigurer, Customizer.withDefaults())
                 .authorizeHttpRequests(authorize ->
                         authorize.requestMatchers("/h2-console/**").permitAll()
-                                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                                .requestMatchers("/swagger-ui/**", "/api-docs/**").permitAll()
                                 .requestMatchers("/oauth2/**").permitAll()
                                 .anyRequest().authenticated()
                 )
@@ -67,7 +67,7 @@ public class SecurityConfig {
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/h2-console/**").permitAll()
-                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                        .requestMatchers("/swagger-ui/**", "/api-docs/**").permitAll()
                         .requestMatchers("/registered-client/**").hasAuthority("CLIENT_CREATOR")
                         .anyRequest().authenticated()
                 )

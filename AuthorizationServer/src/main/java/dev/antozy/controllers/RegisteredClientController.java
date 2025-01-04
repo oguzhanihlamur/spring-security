@@ -4,8 +4,11 @@ import dev.antozy.dto.RegisteredClientRequestDTO;
 import dev.antozy.dto.ResponseDTO;
 import dev.antozy.services.RegisteredClientService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
@@ -27,16 +30,18 @@ import java.util.Optional;
 @RequestMapping(value = "/registered-client", consumes = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
 @Slf4j
+@SecurityRequirement(name = "oauth2")
 public class RegisteredClientController {
 
     private final RegisteredClientService registeredClientService;
 
     @PostMapping("/register")
     @PreAuthorize("hasAuthority('CLIENT_CREATOR')")
-    @Operation(summary = "Register new OAuth2 client", description = "Creates a new OAuth2 client and returns registration details with QR code")
+    @Operation(summary = "Register new OAuth2 client", description = "Creates a new OAuth2 client and returns registration client details", security = @SecurityRequirement(name = "bearer"))
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Client successfully registered with generated credentials"),
+            @ApiResponse(responseCode = "201", description = "Client successfully registered with generated credentials", content = @Content(schema = @Schema(implementation = ResponseDTO.class))),
             @ApiResponse(responseCode = "400", description = "Invalid request parameters or client configuration"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized access"),
             @ApiResponse(responseCode = "404", description = "Required resources not found for client registration"),
             @ApiResponse(responseCode = "500", description = "Server error occurred during client registration")
     })

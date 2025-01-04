@@ -8,6 +8,14 @@ plugins {
 group = 'dev.antozy'
 version = 'V25.01.001'
 
+processResources {
+    filesMatching('application.yml') {
+        expand(
+                applicationVersion: project.version
+        )
+    }
+}
+
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(23)
